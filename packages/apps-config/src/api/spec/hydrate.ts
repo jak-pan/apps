@@ -7,6 +7,11 @@ import type { OverrideBundleDefinition } from '@polkadot/types/types';
 /* eslint-disable sort-keys */
 
 const definitions: OverrideBundleDefinition = {
+  typesAlias: {
+    tokens: {
+      AccountData: 'OrmlAccountData'
+    }
+  },
   types: [
     {
       // on all versions
@@ -15,9 +20,17 @@ const definitions: OverrideBundleDefinition = {
         Amount: 'i128',
         AmountOf: 'Amount',
         Address: 'AccountId',
+        AssetPair: {
+          asset_in: 'AssetId',
+          asset_out: 'AssetId',
+        },
         BalanceInfo: {
           amount: 'Balance',
           assetId: 'AssetId'
+        },
+        Chain: {
+          genesisHash: 'Vec<u8>',
+          lastBlockHash: 'Vec<u8>
         },
         CurrencyId: 'AssetId',
         CurrencyIdOf: 'AssetId',
@@ -29,7 +42,7 @@ const definitions: OverrideBundleDefinition = {
           discount: 'bool',
           sell_or_buy: 'IntentionType'
         },
-        IntentionId: 'u128',
+        IntentionId: 'Hash',
         IntentionType: {
           _enum: [
             'SELL',
@@ -38,11 +51,12 @@ const definitions: OverrideBundleDefinition = {
         },
         LookupSource: 'AccountId',
         OrderedSet: 'Vec<AssetId>',
-        Price: 'Balance',
-        Chain: {
-          genesisHash: 'Vec<u8>',
-          lastBlockHash: 'Vec<u8>'
-        }
+        OrmlAccountData: {
+          free: 'Balance',
+          frozen: 'Balance',
+          reserved: 'Balance'
+        },
+        Price: 'Balance'
       }
     }
   ]
